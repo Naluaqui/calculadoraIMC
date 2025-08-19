@@ -6,7 +6,16 @@ function App(){
 
   const [peso,setPeso] = useState(0);
   const [altura,setAltura] = useState(0);
-  const [resultado,setResultado] = useState(0);
+  const [resultado,setResultado] = useState(False);
+
+  const calcularImc=()=> {
+    const img = peso/(altura*peso)
+    return setResultado(imc.toFixed(2))
+  }
+
+  useEffect(()=>{
+    resultado > 0 ? setMostrarResultado(true):setMostrarResultado(false)
+  },[resultado])
 
   return (
 
@@ -24,7 +33,7 @@ function App(){
               <input id="peso" type="number" placeholder="Digite seu peso" onBlur={({target})=>parseInt(setPeso(target.value))}/>
             </div>
 
-            <button onClick={calculadorImc}>Calcular</button>
+            <button onClick={calcularImc}>Calcular</button>
 
           </form>
         </div>
